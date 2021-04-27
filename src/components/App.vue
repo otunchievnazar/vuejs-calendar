@@ -31,7 +31,15 @@ export default {
         currentDay = this.$moment(currentDay).subtract(1, 'days');
         days.unshift(currentDay);
       } while(currentDay.day() !== MONDAY)
-      
+
+      //add following days to end
+      currentDay = this.$moment(days[days.length] - 1);
+
+      do {
+        currentDay = this.$moment(currentDay).add(1, 'days');
+        days.push(currentDay)
+      } while(currentDay.day() !== SUNDAY)
+
       return days;
     },
   },
